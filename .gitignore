@@ -12,6 +12,10 @@ tmp/
 logs/
 **/logs/
 
+# Production build output
+publish/
+**/publish/
+
 # If you store generated compose/services at runtime
 docker-compose.generated.yml
 docker-compose.override.yml

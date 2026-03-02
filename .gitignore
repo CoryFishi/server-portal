@@ -1,0 +1,83 @@
+# --- Runtime data (modpacks, worlds, saves, configs, uploads) ---
+data/
+**/data/
+uploads/
+**/uploads/
+backups/
+**/backups/
+temp/
+**/temp/
+tmp/
+**/tmp/
+logs/
+**/logs/
+
+# If you store generated compose/services at runtime
+docker-compose.generated.yml
+docker-compose.override.yml
+
+# Any extracted server packs / mod loaders / cache folders you might create
+**/mods/
+**/config/
+**/world*/
+**/saves/
+**/libraries/
+**/kubejs/
+**/defaultconfigs/
+**/journeymap/
+**/resourcepacks/
+**/shaderpacks/
+
+# --- Secrets / env files ---
+.env
+.env.*
+!.env.example
+**/*.secrets.json
+**/appsettings.*.json
+!**/appsettings.json
+!**/appsettings.Development.json
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+.vscode/
+!.vscode/extensions.json
+.idea/
+
+# --- .NET / Visual Studio ---
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+TestResults/
+artifacts/
+
+# --- Node / Vite / React ---
+node_modules/
+dist/
+dist-ssr/
+.vite/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Docker ---
+**/*.pid
+**/*.sock
+
+# --- Certificates / keys (never commit) ---
+*.pem
+*.key
+*.pfx
+*.crt
+
+# --- Misc ---
+*.log

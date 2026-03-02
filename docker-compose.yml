@@ -1,0 +1,279 @@
+services:
+  mc_paper_121:
+    container_name: serverportal_mc_paper_121
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_paper_121
+    environment:
+      EULA: TRUE
+      TYPE: PAPER
+      VERSION: 1.21.1
+      MEMORY: 6G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_paper_121:/data
+    restart: unless-stopped
+  mc_atm9:
+    container_name: serverportal_mc_atm9
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_atm9
+    environment:
+      EULA: TRUE
+      TYPE: FORGE
+      VERSION: 1.20.1
+      MEMORY: 10G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_atm9:/data
+    restart: unless-stopped
+  mc_prominence2:
+    container_name: serverportal_mc_prominence2
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_prominence2
+    environment:
+      EULA: TRUE
+      TYPE: FABRIC
+      VERSION: 1.20.1
+      MEMORY: 8G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_prominence2:/data
+    restart: unless-stopped
+  zomboid:
+    container_name: serverportal_zomboid
+    image: renegademaster/zomboid-dedicated-server:latest
+    profiles:
+    - zomboid
+    environment:
+      SERVER_NAME: MyZomboid
+      ADMIN_PASSWORD: change-me
+    ports:
+    - 16261:16261/udp
+    - 16262:16262/udp
+    volumes:
+    - ./data/zomboid:/home/steam/Zomboid
+    restart: unless-stopped
+  palworld:
+    container_name: serverportal_palworld
+    image: thijsvanloef/palworld-server-docker:latest
+    profiles:
+    - palworld
+    environment:
+      SERVER_NAME: MyPalworld
+      SERVER_PASSWORD: change-me
+      ADMIN_PASSWORD: change-me
+    ports:
+    - 8211:8211/udp
+    - 27015:27015/udp
+    volumes:
+    - ./data/palworld:/palworld
+    restart: unless-stopped
+  mc_newserver:
+    container_name: serverportal_mc_newserver
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_newserver
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 1.21.1
+      MEMORY: 10G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_newserver:/data
+    restart: unless-stopped
+  mc_newserver123123:
+    container_name: serverportal_mc_newserver123123
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_newserver123123
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 1.21.1
+      MEMORY: 10G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_newserver123123:/data
+    restart: unless-stopped
+  mc_newserver69:
+    container_name: serverportal_mc_newserver69
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_newserver69
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 1.21.1
+      MEMORY: 10G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_newserver69:/data
+    restart: unless-stopped
+  mc_newserver1111:
+    container_name: serverportal_mc_newserver1111
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_newserver1111
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 1.21.1
+      MEMORY: 10G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_newserver1111:/data
+    restart: unless-stopped
+  mc_newserver2222:
+    container_name: serverportal_mc_newserver2222
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_newserver2222
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 1.21.1
+      MEMORY: 10G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_newserver2222:/data
+    restart: unless-stopped
+  mc_newserver3333:
+    container_name: serverportal_mc_newserver3333
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_newserver3333
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 1.21.1
+      MEMORY: 10G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_newserver3333:/data
+    restart: unless-stopped
+  mc_newserver44444:
+    container_name: serverportal_mc_newserver44444
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_newserver44444
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 1.21.1
+      MEMORY: 10G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_newserver44444:/data
+    restart: unless-stopped
+  mc_newserver669:
+    container_name: serverportal_mc_newserver669
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_newserver669
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 1.21.1
+      MEMORY: 10G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+      NEOFORGE_VERSION: 21.1.119
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_newserver669:/data
+    restart: unless-stopped
+  mc_newest:
+    container_name: serverportal_mc_newest
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_newest
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 1.21.1
+      MEMORY: 10G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+      NEOFORGE_VERSION: 21.1.219
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_newest:/data
+    restart: unless-stopped
+  mc_pixel:
+    container_name: serverportal_mc_pixel
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_pixel
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 1.21.1
+      MEMORY: 10G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_pixel:/data
+    restart: unless-stopped

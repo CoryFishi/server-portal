@@ -1,0 +1,24 @@
+[Unit]
+Description=Server Portal - Minecraft Server Management
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+User=YOUR_USERNAME
+WorkingDirectory=/opt/server-portal/publish
+ExecStart=/usr/bin/dotnet /opt/server-portal/publish/server-portal.dll
+Restart=always
+RestartSec=10
+
+# Environment
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=ASPNETCORE_URLS=http://0.0.0.0:5000
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=server-portal
+
+[Install]
+WantedBy=multi-user.target

@@ -48,11 +48,15 @@ namespace server_portal
                 app.UseSwaggerUI();
             }
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseCors();
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapHub<LogsHub>("/hubs/logs");
             app.MapControllers();
+            app.MapFallbackToFile("index.html");
+
             app.Run();
         }
     }

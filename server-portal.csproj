@@ -8,17 +8,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="data\mc_atm9\**" />
+    <Compile Remove="data\mc_paper_121\**" />
+    <Compile Remove="data\mc_prominence2\**" />
+    <Compile Remove="data\palworld\**" />
+    <Compile Remove="data\zomboid\**" />
+    <Content Remove="data\mc_atm9\**" />
+    <Content Remove="data\mc_paper_121\**" />
+    <Content Remove="data\mc_prominence2\**" />
+    <Content Remove="data\palworld\**" />
+    <Content Remove="data\zomboid\**" />
+    <EmbeddedResource Remove="data\mc_atm9\**" />
+    <EmbeddedResource Remove="data\mc_paper_121\**" />
+    <EmbeddedResource Remove="data\mc_prominence2\**" />
+    <EmbeddedResource Remove="data\palworld\**" />
+    <EmbeddedResource Remove="data\zomboid\**" />
+    <None Remove="data\mc_atm9\**" />
+    <None Remove="data\mc_paper_121\**" />
+    <None Remove="data\mc_prominence2\**" />
+    <None Remove="data\palworld\**" />
+    <None Remove="data\zomboid\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.4" />
     <PackageReference Include="YamlDotNet" Version="16.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="data\mc_paper_121\" />
-    <Folder Include="data\mc_atm9\" />
-    <Folder Include="data\mc_prominence2\" />
-    <Folder Include="data\palworld\" />
-    <Folder Include="data\zomboid\" />
+    <Folder Include="data\" />
+    <Folder Include="portal-ui\src\components\shared\" />
+    <Folder Include="portal-ui\src\shared\models\" />
   </ItemGroup>
 
 </Project>

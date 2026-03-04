@@ -94,7 +94,7 @@ services:
       EULA: TRUE
       TYPE: NEOFORGE
       VERSION: 1.21.1
-      MEMORY: 10G
+      MEMORY: 4G
       ENABLE_RCON: true
       RCON_PASSWORD: change-me
       RCON_PORT: 25575
@@ -245,13 +245,12 @@ services:
     - mc_newest
     environment:
       EULA: TRUE
-      TYPE: NEOFORGE
-      VERSION: 1.21.1
-      MEMORY: 10G
+      TYPE: FABRIC
+      VERSION: 1.21
+      MEMORY: 4G
       ENABLE_RCON: true
       RCON_PASSWORD: change-me
       RCON_PORT: 25575
-      NEOFORGE_VERSION: 21.1.219
     ports:
     - 25565:25565
     - 25575:25575
@@ -276,4 +275,99 @@ services:
     - 25575:25575
     volumes:
     - ./data/mc_pixel:/data
+    restart: unless-stopped
+  mc_asd:
+    container_name: serverportal_mc_asd
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_asd
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 1.21.1
+      MEMORY: 4G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_asd:/data
+    restart: unless-stopped
+  mc_12:
+    container_name: serverportal_mc_12
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_12
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 1.21
+      MEMORY: 4G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_12:/data
+    restart: unless-stopped
+  mc_22222:
+    container_name: serverportal_mc_22222
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_22222
+    environment:
+      EULA: TRUE
+      TYPE: NEOFORGE
+      VERSION: 12
+      MEMORY: 4G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_22222:/data
+    restart: unless-stopped
+  mc_111:
+    container_name: serverportal_mc_111
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_111
+    environment:
+      EULA: TRUE
+      TYPE: FABRIC
+      VERSION: 1
+      MEMORY: 4G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_111:/data
+    restart: unless-stopped
+  mc_123:
+    container_name: serverportal_mc_123
+    image: itzg/minecraft-server:java21
+    profiles:
+    - mc_123
+    environment:
+      EULA: TRUE
+      TYPE: FABRIC
+      VERSION: 123
+      MEMORY: 4G
+      ENABLE_RCON: true
+      RCON_PASSWORD: change-me
+      RCON_PORT: 25575
+    ports:
+    - 25565:25565
+    - 25575:25575
+    volumes:
+    - ./data/mc_123:/data
     restart: unless-stopped

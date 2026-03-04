@@ -30,6 +30,7 @@ public class ServersController : ControllerBase
         {
             id = def.Id,
             name = def.Name,
+            game = def.Game,
             status = running.Contains(def.ContainerName) ? "running" : "stopped"
         });
 
@@ -85,16 +86,13 @@ public class ServersController : ControllerBase
         
         try
         {
-            // Save the zip file
             await using (var stream = new FileStream(zipPath, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
             }
 
-            // Extract zip
             System.IO.Compression.ZipFile.ExtractToDirectory(zipPath, dataFolder, overwriteFiles: force);
 
-            // Delete zip after successful extraction
             System.IO.File.Delete(zipPath);
 
             return Ok(new 

@@ -72,4 +72,4 @@ public static class ServerDefinitions
     }
 }
 
-public record ServerDef(string Id, string Name, string ContainerName);
+public record ServerDef(string Id, string Game, string Name, string ContainerName);

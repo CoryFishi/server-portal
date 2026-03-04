@@ -15,8 +15,8 @@ public class UploadController : ControllerBase
         [FromForm] string modpackId, 
         [FromForm] string modpackName,
         [FromForm] string minecraftVersion,
-        [FromForm] string modLoader, // "FORGE", "FABRIC", "NEOFORGE"
-        [FromForm] string memory, // e.g., "10G"
+        [FromForm] string modLoader,
+        [FromForm] string memory,
         IFormFile file, 
         [FromForm] bool force = false)
     {
@@ -60,22 +60,18 @@ public class UploadController : ControllerBase
                 await file.CopyToAsync(stream);
             }
 
-            // Extract zip
             System.IO.Compression.ZipFile.ExtractToDirectory(zipPath, dataFolder, overwriteFiles: force);
             System.IO.File.Delete(zipPath);
 
-            // FIX NESTED FOLDERS
             var nestingFixed = FixNestedFolders(dataFolder);
 
-            // AUTO-DETECT mod loader version from extracted files
             var detectedVersion = DetectModLoaderVersion(dataFolder, modLoader);
 
-            // AUTO-CONFIGURE: Add to docker-compose.yml
             UpdateDockerCompose(modpackId, minecraftVersion, modLoader, detectedVersion, memory);
 
-            // AUTO-CONFIGURE: Add to ServerDefinitions
             ServerDefinitions.AddOrUpdate(new ServerDef(
                 modpackId,
+                "Minecraft",
                 modpackName ?? $"Minecraft - {modpackId}",
                 $"serverportal_{modpackId}"
             ));
@@ -121,7 +117,7 @@ public class UploadController : ControllerBase
         }
         catch
         {
-            return null; // Let Docker image auto-select if detection fails
+            return null;
         }
     }
 
@@ -133,12 +129,10 @@ public class UploadController : ControllerBase
         {
             var content = System.IO.File.ReadAllText(shFile);
 
-            // Look for variable declarations like: NEOFORGE_VERSION=21.1.119 or FORGE_VERSION=47.3.0
             var versionVarMatch = System.Text.RegularExpressions.Regex.Match(content, @"(?:NEOFORGE|FORGE)_VERSION\s*=\s*(\d+\.\d+\.\d+)", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             if (versionVarMatch.Success)
                 return versionVarMatch.Groups[1].Value;
 
-            // Look for patterns like: neoforge-21.1.119 or forge-47.3.0
             var neoforgeMatch = System.Text.RegularExpressions.Regex.Match(content, @"neoforge[/-](\d+\.\d+\.\d+)", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             if (neoforgeMatch.Success)
                 return neoforgeMatch.Groups[1].Value;
@@ -148,7 +142,6 @@ public class UploadController : ControllerBase
                 return forgeMatch.Groups[1].Value;
         }
 
-        // Check libraries folder structure
         var librariesPath = Path.Combine(dataFolder, "libraries", "net", "neoforged", "neoforge");
         if (Directory.Exists(librariesPath))
         {
@@ -161,7 +154,6 @@ public class UploadController : ControllerBase
             }
         }
 
-        // Check for forge in libraries
         librariesPath = Path.Combine(dataFolder, "libraries", "net", "minecraftforge", "forge");
         if (Directory.Exists(librariesPath))
         {
@@ -169,7 +161,6 @@ public class UploadController : ControllerBase
             if (versionDirs.Length > 0)
             {
                 var fullVersion = Path.GetFileName(versionDirs[0]);
-                // Forge versions are like "1.21.1-52.0.23", we want just "52.0.23"
                 var match = System.Text.RegularExpressions.Regex.Match(fullVersion, @"[\d.]+-([\d.]+)");
                 if (match.Success)
                     return match.Groups[1].Value;
@@ -181,7 +172,6 @@ public class UploadController : ControllerBase
 
     private string? DetectFabricVersion(string dataFolder)
     {
-        // Check fabric-server-launcher.properties
         var fabricProps = Path.Combine(dataFolder, "fabric-server-launcher.properties");
         if (System.IO.File.Exists(fabricProps))
         {
@@ -229,7 +219,6 @@ public class UploadController : ControllerBase
                 ["RCON_PORT"] = "25575"
             };
 
-            // Add specific mod loader version environment variable (if detected)
             if (!string.IsNullOrEmpty(modLoaderVersion))
             {
                 switch (modLoader.ToUpper())
@@ -276,20 +265,16 @@ public class UploadController : ControllerBase
 
         while (true)
         {
-            // Get all items in root folder
             var directories = Directory.GetDirectories(rootFolder);
             var files = Directory.GetFiles(rootFolder);
 
-            // Check if root already has server files - if so, no need to fix
             if (HasServerFiles(rootFolder))
             {
-                break; // Structure is correct
+                break;
             }
 
-            // Look for a single subdirectory that contains server files
             if (directories.Length >= 1)
             {
-                // Find the first subdirectory with server files
                 string? serverDir = null;
                 foreach (var dir in directories)
                 {
@@ -302,10 +287,8 @@ public class UploadController : ControllerBase
 
                 if (serverDir != null)
                 {
-                    // Move all contents from this subdirectory up
                     MoveDirectoryContents(serverDir, rootFolder);
 
-                    // Delete the now-empty subdirectory
                     try
                     {
                         Directory.Delete(serverDir, recursive: true);
@@ -316,11 +299,9 @@ public class UploadController : ControllerBase
                     }
 
                     levelsRemoved++;
-                    continue; // Check again for more nesting
+                    continue;
                 }
             }
-
-            // No nesting found or fixed
             break;
         }
 
@@ -329,18 +310,17 @@ public class UploadController : ControllerBase
 
     private bool HasServerFiles(string directory)
     {
-        // Check for common Minecraft server files/folders
         var serverIndicators = new[]
         {
-            "mods",           // Most reliable - mods folder
-            "config",         // Config folder
+            "mods",        
+            "config",    
             "server.properties",
             "eula.txt",
             "libraries",
             "kubejs",
             "defaultconfigs",
             "world",
-            "server.jar",     // Vanilla server
+            "server.jar",    
             "forge-installer.jar"
         };
 
@@ -351,34 +331,29 @@ public class UploadController : ControllerBase
             if (Directory.Exists(path) || System.IO.File.Exists(path))
             {
                 found++;
-                // If we find at least 2 indicators, we're confident this is the server folder
-                if (found >= 2 || indicator == "mods") // mods folder is definitive
+                if (found >= 2 || indicator == "mods")
                     return true;
             }
         }
 
-        return found >= 1; // At least one indicator
+        return found >= 1; 
     }
 
     private void MoveDirectoryContents(string sourceDir, string targetDir)
     {
-        // Move all files
         foreach (var file in Directory.GetFiles(sourceDir))
         {
             var fileName = Path.GetFileName(file);
             var destFile = Path.Combine(targetDir, fileName);
 
-            // Skip if destination exists and is the same
             if (System.IO.File.Exists(destFile))
             {
-                // Keep the file from nested folder (usually newer/correct)
                 System.IO.File.Delete(destFile);
             }
 
             System.IO.File.Move(file, destFile);
         }
 
-        // Move all directories
         foreach (var dir in Directory.GetDirectories(sourceDir))
         {
             var dirName = Path.GetFileName(dir);
@@ -386,7 +361,6 @@ public class UploadController : ControllerBase
 
             if (Directory.Exists(destDir))
             {
-                // Merge directories instead of replacing
                 MoveDirectoryContents(dir, destDir);
                 try
                 {

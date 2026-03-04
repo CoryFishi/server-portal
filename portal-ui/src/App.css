@@ -1,42 +1,131 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import "tailwindcss";
+
+/* @theme registers tokens with Tailwind v4 so utilities like bg-background-50,
+   text-text-900, etc. are generated. Light mode values are the defaults. */
+@theme {
+  --color-text-50: #f0f4f3;
+  --color-text-100: #e1eae8;
+  --color-text-200: #c3d5d0;
+  --color-text-300: #a5c0b9;
+  --color-text-400: #88aaa2;
+  --color-text-500: #6a958a;
+  --color-text-600: #55776f;
+  --color-text-700: #3f5a53;
+  --color-text-800: #2a3c37;
+  --color-text-900: #151e1c;
+  --color-text-950: #0b0f0e;
+
+  --color-background-50: #f0f5f1;
+  --color-background-100: #e0ebe4;
+  --color-background-200: #c2d6c9;
+  --color-background-300: #a3c2ad;
+  --color-background-400: #85ad92;
+  --color-background-500: #669977;
+  --color-background-600: #527a5f;
+  --color-background-700: #3d5c47;
+  --color-background-800: #293d30;
+  --color-background-900: #141f18;
+  --color-background-950: #0a0f0c;
+
+  --color-primary-50: #f0f5f3;
+  --color-primary-100: #e0ebe7;
+  --color-primary-200: #c2d6cf;
+  --color-primary-300: #a3c2b8;
+  --color-primary-400: #85ada0;
+  --color-primary-500: #669988;
+  --color-primary-600: #527a6d;
+  --color-primary-700: #3d5c52;
+  --color-primary-800: #293d36;
+  --color-primary-900: #141f1b;
+  --color-primary-950: #0a0f0e;
+
+  --color-secondary-50: #f5f0f3;
+  --color-secondary-100: #ebe0e8;
+  --color-secondary-200: #d6c2d1;
+  --color-secondary-300: #c2a3ba;
+  --color-secondary-400: #ad85a3;
+  --color-secondary-500: #99668b;
+  --color-secondary-600: #7a5270;
+  --color-secondary-700: #5c3d54;
+  --color-secondary-800: #3d2938;
+  --color-secondary-900: #1f141c;
+  --color-secondary-950: #0f0a0e;
+
+  --color-accent-50: #f5f0f0;
+  --color-accent-100: #eae1e1;
+  --color-accent-200: #d6c3c2;
+  --color-accent-300: #c1a5a4;
+  --color-accent-400: #ac8886;
+  --color-accent-500: #986a67;
+  --color-accent-600: #795553;
+  --color-accent-700: #5b3f3e;
+  --color-accent-800: #3d2a29;
+  --color-accent-900: #1e1515;
+  --color-accent-950: #0f0b0a;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+/* Dark mode overrides — CSS variables are reassigned at runtime
+   when data-theme="dark" is set on <html>. */
+@layer base {
+  [data-theme="dark"] {
+    --color-text-50: #0b0f0e;
+    --color-text-100: #161d1b;
+    --color-text-200: #2b3b37;
+    --color-text-300: #415852;
+    --color-text-400: #57756e;
+    --color-text-500: #6c9389;
+    --color-text-600: #8aa8a1;
+    --color-text-700: #a7beb8;
+    --color-text-800: #c4d4d0;
+    --color-text-900: #e2e9e7;
+    --color-text-950: #f0f4f3;
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+    --color-background-50: #0a0f0c;
+    --color-background-100: #141f18;
+    --color-background-200: #293d30;
+    --color-background-300: #3d5c47;
+    --color-background-400: #527a5f;
+    --color-background-500: #669977;
+    --color-background-600: #85ad92;
+    --color-background-700: #a3c2ad;
+    --color-background-800: #c2d6c9;
+    --color-background-900: #e0ebe4;
+    --color-background-950: #f0f5f1;
+
+    --color-primary-50: #0a0f0e;
+    --color-primary-100: #141f1b;
+    --color-primary-200: #293d36;
+    --color-primary-300: #3d5c52;
+    --color-primary-400: #527a6d;
+    --color-primary-500: #669988;
+    --color-primary-600: #85ada0;
+    --color-primary-700: #a3c2b8;
+    --color-primary-800: #c2d6cf;
+    --color-primary-900: #e0ebe7;
+    --color-primary-950: #f0f5f3;
+
+    --color-secondary-50: #0f0a0e;
+    --color-secondary-100: #1f141c;
+    --color-secondary-200: #3d2938;
+    --color-secondary-300: #5c3d54;
+    --color-secondary-400: #7a5270;
+    --color-secondary-500: #99668b;
+    --color-secondary-600: #ad85a3;
+    --color-secondary-700: #c2a3ba;
+    --color-secondary-800: #d6c2d1;
+    --color-secondary-900: #ebe0e8;
+    --color-secondary-950: #f5f0f3;
+
+    --color-accent-50: #0f0b0a;
+    --color-accent-100: #1e1515;
+    --color-accent-200: #3d2a29;
+    --color-accent-300: #5b3f3e;
+    --color-accent-400: #795553;
+    --color-accent-500: #986a67;
+    --color-accent-600: #ac8886;
+    --color-accent-700: #c1a5a4;
+    --color-accent-800: #d6c3c2;
+    --color-accent-900: #eae1e1;
+    --color-accent-950: #f5f0f0;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

@@ -1,77 +1,68 @@
 [
   {
-    "Id": "mc_paper_121",
-    "Name": "Minecraft Paper 1.21.1",
-    "ContainerName": "serverportal_mc_paper_121"
+    "Id": "1",
+    "Game": "Minecraft",
+    "Name": "Survival Server",
+    "ContainerName": ""
   },
   {
-    "Id": "mc_atm9",
-    "Name": "Minecraft - ATM9 (Forge)",
-    "ContainerName": "serverportal_mc_atm9"
+    "Id": "2",
+    "Game": "Minecraft",
+    "Name": "Creative Server",
+    "ContainerName": ""
   },
   {
-    "Id": "mc_prominence2",
-    "Name": "Minecraft - Prominence II (Fabric)",
-    "ContainerName": "serverportal_mc_prominence2"
+    "Id": "3",
+    "Game": "Zomboid",
+    "Name": "Creative Server",
+    "ContainerName": ""
   },
   {
-    "Id": "palworld",
-    "Name": "Palworld",
-    "ContainerName": "serverportal_palworld"
-  },
-  {
-    "Id": "zomboid",
-    "Name": "Project Zomboid",
-    "ContainerName": "serverportal_zomboid"
+    "Id": "4",
+    "Game": "PalWorld",
+    "Name": "Creative Server",
+    "ContainerName": ""
   },
   {
     "Id": "mc_newserver",
-    "Name": "New Server",
+    "Game": "Minecraft",
+    "Name": "NewServer",
     "ContainerName": "serverportal_mc_newserver"
   },
   {
-    "Id": "mc_newserver123123",
-    "Name": "New Server",
-    "ContainerName": "serverportal_mc_newserver123123"
+    "Id": "mc_asd",
+    "Game": "Minecraft",
+    "Name": "123",
+    "ContainerName": "serverportal_mc_asd"
   },
   {
-    "Id": "mc_newserver69",
-    "Name": "New Server",
-    "ContainerName": "serverportal_mc_newserver69"
-  },
-  {
-    "Id": "mc_newserver1111",
-    "Name": "1111",
-    "ContainerName": "serverportal_mc_newserver1111"
-  },
-  {
-    "Id": "mc_newserver2222",
-    "Name": "New Server",
-    "ContainerName": "serverportal_mc_newserver2222"
-  },
-  {
-    "Id": "mc_newserver3333",
-    "Name": "New Server",
-    "ContainerName": "serverportal_mc_newserver3333"
-  },
-  {
-    "Id": "mc_newserver44444",
-    "Name": "New Server",
-    "ContainerName": "serverportal_mc_newserver44444"
-  },
-  {
-    "Id": "mc_newserver669",
-    "Name": "New Server",
-    "ContainerName": "serverportal_mc_newserver669"
+    "Id": "mc_12",
+    "Game": "Minecraft",
+    "Name": "12333",
+    "ContainerName": "serverportal_mc_12"
   },
   {
     "Id": "mc_newest",
-    "Name": "New Server",
+    "Game": "Minecraft",
+    "Name": "Newest",
     "ContainerName": "serverportal_mc_newest"
   },
   {
-    "Id": "mc_pixel",
-    "Name": "Pixelmon",
-    "ContainerName": "serverportal_mc_pixel"
+    "Id": "mc_22222",
+    "Game": "Minecraft",
+    "Name": "333232",
+    "ContainerName": "serverportal_mc_22222"
+  },
+  {
+    "Id": "mc_111",
+    "Game": "Minecraft",
+    "Name": "11111111111111111",
+    "ContainerName": "serverportal_mc_111"
+  },
+  {
+    "Id": "mc_123",
+    "Game": "Minecraft",
+    "Name": "3333",
+    "ContainerName": "serverportal_mc_123"
   }
 ]
